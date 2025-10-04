@@ -4,9 +4,10 @@ import { convert, conversionData } from '../utils/conversionFactors';
 
 interface ConverterCardProps {
   category: string;
+  onBack?: () => void;
 }
 
-export default function ConverterCard({ category }: ConverterCardProps) {
+export default function ConverterCard({ category, onBack }: ConverterCardProps) {
   const categoryData = conversionData[category];
 
   if (!categoryData) {
@@ -47,6 +48,30 @@ export default function ConverterCard({ category }: ConverterCardProps) {
     setToUnit(fromUnit);
   };
 
+  // Handle long press for back navigation
+  const [pressTimer, setPressTimer] = useState<number | null>(null);
+
+  const handlePressStart = () => {
+    const timer = window.setTimeout(() => {
+      if (onBack) {
+        onBack();
+      }
+    }, 500); // 500ms long press
+    setPressTimer(timer);
+  };
+
+  const handlePressEnd = () => {
+    if (pressTimer) {
+      clearTimeout(pressTimer);
+      setPressTimer(null);
+    }
+  };
+
+  const handleClick = () => {
+    handlePressEnd();
+    handleSwapUnits();
+  };
+
   return (
     <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 transition-all duration-300 hover:shadow-xl">
       {/* Input Section */}
@@ -80,9 +105,15 @@ export default function ConverterCard({ category }: ConverterCardProps) {
       {/* Swap Button */}
       <div className="flex justify-center mb-4 sm:mb-6">
         <button
-          onClick={handleSwapUnits}
+          onClick={handleClick}
+          onMouseDown={handlePressStart}
+          onMouseUp={handlePressEnd}
+          onMouseLeave={handlePressEnd}
+          onTouchStart={handlePressStart}
+          onTouchEnd={handlePressEnd}
           className="p-2.5 sm:p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-full transition-all duration-300 hover:scale-110 active:scale-95"
-          aria-label="Swap units"
+          aria-label="Swap units (long press to go back)"
+          title="Click to swap units, long press to go back"
         >
           <ArrowLeftRight size={20} />
         </button>
