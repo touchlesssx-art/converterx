@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ArrowLeftRight } from 'lucide-react';
 import { convert, conversionData } from '../utils/conversionFactors';
-import CustomKeyboard from './CustomKeyboard';
 
 interface ConverterCardProps {
   category: string;
@@ -20,8 +19,6 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
   const [toUnit, setToUnit] = useState(unitKeys[1] || unitKeys[0]);
   const [inputValue, setInputValue] = useState('1');
   const [result, setResult] = useState('0');
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
-  const [activeField, setActiveField] = useState<'from' | 'to'>('from');
 
   // Perform conversion whenever input or units change
   useEffect(() => {
@@ -43,19 +40,6 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
     if (value === '' || value === '-' || /^-?\d*\.?\d*$/.test(value)) {
       setInputValue(value);
     }
-  };
-
-  // Handle keyboard input
-  const handleKeyboardInput = (value: string) => {
-    if (activeField === 'from') {
-      setInputValue(value);
-    }
-  };
-
-  // Handle input field click to open keyboard
-  const handleInputFocus = (field: 'from' | 'to') => {
-    setActiveField(field);
-    setIsKeyboardOpen(true);
   };
 
   // Swap from and to units
@@ -117,14 +101,11 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
           <input
             type="text"
-            inputMode="none"
             value={inputValue}
             onChange={handleInputChange}
-            onFocus={() => handleInputFocus('from')}
-            onClick={() => handleInputFocus('from')}
-            className="w-full sm:flex-1 px-3 sm:px-4 py-3 text-xl sm:text-2xl font-semibold text-gray-800 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
+            className="w-full sm:flex-1 px-3 sm:px-4 py-3 text-xl sm:text-2xl font-semibold text-gray-800 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
             placeholder="Enter value"
-            readOnly
+            autoFocus
           />
           <select
             value={fromUnit}
@@ -190,17 +171,6 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
           </p>
         )}
       </div>
-
-      {/* Custom Keyboard */}
-      <CustomKeyboard
-        isOpen={isKeyboardOpen}
-        onClose={() => setIsKeyboardOpen(false)}
-        onInput={handleKeyboardInput}
-        currentValue={activeField === 'from' ? inputValue : result}
-        allowDecimal={true}
-        allowNegative={true}
-        allowOperators={false}
-      />
     </div>
   );
 }
