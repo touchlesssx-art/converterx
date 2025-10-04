@@ -48,25 +48,25 @@ export default function ConverterCard({ category }: ConverterCardProps) {
   };
 
   return (
-    <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-8 transition-all duration-300 hover:shadow-xl">
+    <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 transition-all duration-300 hover:shadow-xl">
       {/* Input Section */}
-      <div className="mb-6">
-        <label className="block text-sm font-medium text-gray-600 mb-2">
+      <div className="mb-4 sm:mb-6">
+        <label className="block text-xs sm:text-sm font-medium text-gray-600 mb-2">
           From
         </label>
-        <div className="flex gap-3">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
           <input
             type="text"
             value={inputValue}
             onChange={handleInputChange}
-            className="flex-1 px-4 py-3 text-2xl font-semibold text-gray-800 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+            className="w-full sm:flex-1 px-3 sm:px-4 py-3 text-xl sm:text-2xl font-semibold text-gray-800 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
             placeholder="Enter value"
             autoFocus
           />
           <select
             value={fromUnit}
             onChange={(e) => setFromUnit(e.target.value)}
-            className="px-4 py-3 text-gray-800 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
+            className="w-full sm:w-auto sm:min-w-[160px] px-3 sm:px-4 py-3 text-sm sm:text-base text-gray-800 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
           >
             {unitKeys.map((key) => (
               <option key={key} value={key}>
@@ -78,10 +78,10 @@ export default function ConverterCard({ category }: ConverterCardProps) {
       </div>
 
       {/* Swap Button */}
-      <div className="flex justify-center mb-6">
+      <div className="flex justify-center mb-4 sm:mb-6">
         <button
           onClick={handleSwapUnits}
-          className="p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-full transition-all duration-300 hover:scale-110 active:scale-95"
+          className="p-2.5 sm:p-3 bg-blue-50 hover:bg-blue-100 text-blue-600 rounded-full transition-all duration-300 hover:scale-110 active:scale-95"
           aria-label="Swap units"
         >
           <ArrowLeftRight size={20} />
@@ -90,17 +90,17 @@ export default function ConverterCard({ category }: ConverterCardProps) {
 
       {/* Result Section */}
       <div>
-        <label className="block text-sm font-medium text-gray-600 mb-2">
+        <label className="block text-xs sm:text-sm font-medium text-gray-600 mb-2">
           To
         </label>
-        <div className="flex gap-3">
-          <div className="flex-1 px-4 py-3 text-2xl font-semibold text-blue-600 bg-blue-50 border-2 border-blue-200 rounded-xl">
+        <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+          <div className="w-full sm:flex-1 px-3 sm:px-4 py-3 text-xl sm:text-2xl font-semibold text-blue-600 bg-blue-50 border-2 border-blue-200 rounded-xl break-all">
             {result}
           </div>
           <select
             value={toUnit}
             onChange={(e) => setToUnit(e.target.value)}
-            className="px-4 py-3 text-gray-800 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
+            className="w-full sm:w-auto sm:min-w-[160px] px-3 sm:px-4 py-3 text-sm sm:text-base text-gray-800 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all cursor-pointer"
           >
             {unitKeys.map((key) => (
               <option key={key} value={key}>
@@ -112,7 +112,7 @@ export default function ConverterCard({ category }: ConverterCardProps) {
       </div>
 
       {/* Info Text */}
-      <div className="mt-6 text-center text-sm text-gray-500">
+      <div className="mt-4 sm:mt-6 text-center text-xs sm:text-sm text-gray-500 px-2">
         {inputValue && !isNaN(parseFloat(inputValue)) && (
           <p className="animate-fadeIn">
             {inputValue} {categoryData.units[fromUnit].name.toLowerCase()} ={' '}

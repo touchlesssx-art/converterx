@@ -134,34 +134,34 @@ function App() {
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-blue-50">
       {/* Header */}
       <header className="bg-white shadow-sm border-b border-gray-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-3 sm:py-4">
+          <div className="flex items-center justify-between gap-2">
             <button
               onClick={handleBackToHome}
-              className="flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors"
+              className="flex items-center gap-1 sm:gap-2 text-gray-600 hover:text-blue-600 transition-colors flex-shrink-0"
             >
               <Home size={20} />
-              <span className="font-medium">Back to Home</span>
+              <span className="font-medium text-sm sm:text-base">Back</span>
             </button>
 
-            <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-500 rounded-lg">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-0">
+              <div className="p-1.5 sm:p-2 bg-blue-500 rounded-lg flex-shrink-0">
                 {IconComponent && (
-                  <IconComponent className="text-white" size={24} />
+                  <IconComponent className="text-white" size={20} />
                 )}
               </div>
-              <h1 className="text-2xl font-bold text-gray-900">
+              <h1 className="text-base sm:text-xl lg:text-2xl font-bold text-gray-900 truncate">
                 {category.name}
               </h1>
             </div>
 
-            <div className="w-32"></div>
+            <div className="w-0 sm:w-16"></div>
           </div>
         </div>
       </header>
 
       {/* Converter */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <main className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 py-6 sm:py-12">
         <ConverterCard category={selectedCategory} />
       </main>
 
