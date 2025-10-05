@@ -42,8 +42,13 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
     }
   };
 
+  // Animation state for arrow rotation
+  const [isRotating, setIsRotating] = useState(false);
+
   // Swap from and to units
   const handleSwapUnits = () => {
+    setIsRotating(true);
+    setTimeout(() => setIsRotating(false), 300);
     setFromUnit(toUnit);
     setToUnit(fromUnit);
   };
@@ -134,7 +139,10 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
           aria-label="Swap units (long press to go back)"
           title="Click to swap units, long press to go back"
         >
-          <ArrowLeftRight size={20} />
+          <ArrowLeftRight
+            size={20}
+            className={`transition-transform duration-300 ${isRotating ? 'rotate-180' : ''}`}
+          />
         </button>
       </div>
 
