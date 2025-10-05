@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Ruler,
   Square,
@@ -49,9 +49,41 @@ function App() {
   // Get all categories
   const categories = Object.keys(conversionData);
 
+  // Initialize state from URL on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const category = params.get('category');
+    if (category && conversionData[category]) {
+      setSelectedCategory(category);
+    }
+  }, []);
+
+  // Handle browser back/forward buttons
+  useEffect(() => {
+    const handlePopState = () => {
+      const params = new URLSearchParams(window.location.search);
+      const category = params.get('category');
+      if (category && conversionData[category]) {
+        setSelectedCategory(category);
+      } else {
+        setSelectedCategory(null);
+      }
+    };
+
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
   // Handle back to home
   const handleBackToHome = () => {
     setSelectedCategory(null);
+    window.history.pushState({}, '', '/');
+  };
+
+  // Handle category selection
+  const handleCategorySelect = (categoryKey: string) => {
+    setSelectedCategory(categoryKey);
+    window.history.pushState({}, '', `?category=${categoryKey}`);
   };
 
   // Render home screen with all categories
@@ -96,7 +128,7 @@ function App() {
               return (
                 <button
                   key={categoryKey}
-                  onClick={() => setSelectedCategory(categoryKey)}
+                  onClick={() => handleCategorySelect(categoryKey)}
                   className="group relative bg-white rounded-xl p-6 shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 active:scale-95 border-2 border-transparent hover:border-blue-200"
                 >
                   <div className="flex flex-col items-center gap-3">

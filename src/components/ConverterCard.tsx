@@ -76,24 +76,6 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
     handleSwapUnits();
   };
 
-  // Handle Android back button to swap units instead of going back
-  useEffect(() => {
-    const handleBackButton = (e: PopStateEvent) => {
-      e.preventDefault();
-      handleSwapUnits();
-      // Push state back to prevent actual navigation
-      window.history.pushState(null, '', window.location.href);
-    };
-
-    // Push initial state
-    window.history.pushState(null, '', window.location.href);
-
-    window.addEventListener('popstate', handleBackButton);
-
-    return () => {
-      window.removeEventListener('popstate', handleBackButton);
-    };
-  }, [fromUnit, toUnit]);
 
   return (
     <div className="w-full max-w-2xl mx-auto bg-white rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8 transition-all duration-300 hover:shadow-xl">
