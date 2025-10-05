@@ -43,12 +43,11 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
   };
 
   // Animation state for arrow rotation
-  const [isRotating, setIsRotating] = useState(false);
+  const [isRotated, setIsRotated] = useState(false);
 
   // Swap from and to units
   const handleSwapUnits = () => {
-    setIsRotating(true);
-    setTimeout(() => setIsRotating(false), 300);
+    setIsRotated(prev => !prev);
     setFromUnit(toUnit);
     setToUnit(fromUnit);
   };
@@ -141,7 +140,7 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
         >
           <ArrowLeftRight
             size={20}
-            className={`transition-transform duration-300 ${isRotating ? 'rotate-180' : ''}`}
+            className={`transition-transform duration-300 ${isRotated ? 'rotate-180' : 'rotate-0'}`}
           />
         </button>
       </div>
