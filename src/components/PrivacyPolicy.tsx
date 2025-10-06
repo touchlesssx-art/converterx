@@ -32,45 +32,86 @@ export default function PrivacyPolicy({ onBack }: PrivacyPolicyProps) {
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
         <div className="bg-white rounded-2xl shadow-lg p-6 sm:p-8 lg:p-10">
           <div className="prose prose-sm sm:prose-base max-w-none">
-            <p className="text-gray-600 mb-8">
-              Please paste your privacy policy content here
-            </p>
-
-            {/* Example structure - replace with actual content */}
-            <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
               Information Collection
             </h2>
-            <p className="text-gray-700 mb-4">
-              Your content here...
+            <p className="text-gray-700 mb-4 leading-relaxed">
+              At ConverterX, we collect limited, non-personal data to help us understand and improve your experience. This may include:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 mb-6 space-y-2">
+              <li>Device type (e.g., phone, tablet, computer)</li>
+              <li>Browser type and version</li>
+              <li>Anonymous IP address</li>
+              <li>Pages visited and time spent on the website</li>
+            </ul>
+            <p className="text-gray-700 mb-8 leading-relaxed">
+              We do not collect personal data such as names, emails, or payment information unless explicitly provided.
             </p>
 
             <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
               Use of Information
             </h2>
-            <p className="text-gray-700 mb-4">
-              Your content here...
+            <p className="text-gray-700 mb-4 leading-relaxed">
+              The information we collect is used solely to:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 mb-6 space-y-2">
+              <li>Monitor website performance</li>
+              <li>Analyze user interactions (e.g., which pages are most visited)</li>
+              <li>Improve website design, speed, and usability</li>
+              <li>Troubleshoot technical issues</li>
+            </ul>
+            <p className="text-gray-700 mb-8 leading-relaxed">
+              We are committed to maintaining transparency and only using data in ways that benefit your user experience.
             </p>
 
             <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
               Data Security
             </h2>
-            <p className="text-gray-700 mb-4">
-              Your content here...
+            <p className="text-gray-700 mb-4 leading-relaxed">
+              We take data protection seriously. All collected information is:
+            </p>
+            <ul className="list-disc pl-6 text-gray-700 mb-6 space-y-2">
+              <li>Stored in secure environments</li>
+              <li>Accessed only by authorized tools (e.g., Google Analytics)</li>
+              <li>Not linked to any personal identity</li>
+              <li>Never sold, rented, or misused</li>
+            </ul>
+            <p className="text-gray-700 mb-8 leading-relaxed">
+              In future updates, we will implement further encryption and safety features as we grow.
             </p>
 
             <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
               Third-Party Services
             </h2>
-            <ul className="list-disc pl-6 text-gray-700 mb-4 space-y-2">
-              <li>Example service 1</li>
-              <li>Example service 2</li>
+            <ul className="list-disc pl-6 text-gray-700 mb-6 space-y-2">
+              <li>We use Google Analytics to track anonymous usage data.</li>
+              <li>Google may collect anonymized traffic data for performance analysis.</li>
+              <li>
+                You can learn more here:{' '}
+                <a
+                  href="https://policies.google.com/technologies/partner-sites"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:text-blue-700 underline"
+                >
+                  https://policies.google.com/technologies/partner-sites
+                </a>
+              </li>
+              <li>Cookies may also be used to remember preferences and enhance functionality.</li>
             </ul>
 
             <h2 className="text-2xl font-bold text-gray-900 mt-8 mb-4">
               Contact Information
             </h2>
-            <p className="text-gray-700 mb-4">
-              Your content here...
+            <p className="text-gray-700 mb-4 leading-relaxed">
+              If you have any questions, concerns, or requests related to privacy or data usage, feel free to contact us:
+            </p>
+            <div className="text-gray-700 mb-6 space-y-2">
+              <p>📧 <a href="mailto:contact.converterx@gmail.com" className="text-blue-600 hover:text-blue-700">contact.converterx@gmail.com</a></p>
+              <p>🌐 <a href="https://www.converterx.net" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-700">www.converterx.net</a></p>
+            </div>
+            <p className="text-gray-700 mb-8 leading-relaxed">
+              We are here to ensure your privacy and trust remain protected.
             </p>
           </div>
         </div>
