@@ -20,6 +20,7 @@ import {
   Home,
 } from 'lucide-react';
 import ConverterCard from './components/ConverterCard';
+import PrivacyPolicy from './components/PrivacyPolicy';
 import { conversionData } from './utils/conversionFactors';
 
 // Map icon names to actual components
@@ -45,6 +46,7 @@ const iconMap: { [key: string]: any } = {
 
 function App() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [showPrivacyPolicy, setShowPrivacyPolicy] = useState(false);
 
   // Get all categories
   const categories = Object.keys(conversionData);
@@ -52,8 +54,12 @@ function App() {
   // Initialize state from URL on mount
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
+    const page = params.get('page');
     const category = params.get('category');
-    if (category && conversionData[category]) {
+
+    if (page === 'privacy') {
+      setShowPrivacyPolicy(true);
+    } else if (category && conversionData[category]) {
       setSelectedCategory(category);
     }
   }, []);
@@ -62,11 +68,18 @@ function App() {
   useEffect(() => {
     const handlePopState = () => {
       const params = new URLSearchParams(window.location.search);
+      const page = params.get('page');
       const category = params.get('category');
-      if (category && conversionData[category]) {
+
+      if (page === 'privacy') {
+        setShowPrivacyPolicy(true);
+        setSelectedCategory(null);
+      } else if (category && conversionData[category]) {
         setSelectedCategory(category);
+        setShowPrivacyPolicy(false);
       } else {
         setSelectedCategory(null);
+        setShowPrivacyPolicy(false);
       }
     };
 
@@ -77,14 +90,28 @@ function App() {
   // Handle back to home
   const handleBackToHome = () => {
     setSelectedCategory(null);
+    setShowPrivacyPolicy(false);
     window.history.pushState({}, '', '/');
   };
 
   // Handle category selection
   const handleCategorySelect = (categoryKey: string) => {
     setSelectedCategory(categoryKey);
+    setShowPrivacyPolicy(false);
     window.history.pushState({}, '', `?category=${categoryKey}`);
   };
+
+  // Handle privacy policy navigation
+  const handlePrivacyPolicyClick = () => {
+    setShowPrivacyPolicy(true);
+    setSelectedCategory(null);
+    window.history.pushState({}, '', '?page=privacy');
+  };
+
+  // Render privacy policy if selected
+  if (showPrivacyPolicy) {
+    return <PrivacyPolicy onBack={handleBackToHome} />;
+  }
 
   // Render home screen with all categories
   if (!selectedCategory) {
@@ -153,6 +180,12 @@ function App() {
         {/* Footer */}
         <footer className="mt-16 py-6 text-center text-sm text-gray-500">
           <p>Made with precision and care</p>
+          <button
+            onClick={handlePrivacyPolicyClick}
+            className="mt-2 text-blue-600 hover:text-blue-700 underline transition-colors"
+          >
+            Privacy Policy
+          </button>
         </footer>
       </div>
     );
@@ -200,6 +233,12 @@ function App() {
       {/* Footer */}
       <footer className="mt-16 py-6 text-center text-sm text-gray-500">
         <p>Made with precision and care</p>
+        <button
+          onClick={handlePrivacyPolicyClick}
+          className="mt-2 text-blue-600 hover:text-blue-700 underline transition-colors"
+        >
+          Privacy Policy
+        </button>
       </footer>
     </div>
   );
