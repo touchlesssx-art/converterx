@@ -32,6 +32,12 @@ const About: React.FC = () => {
         </div>
       </div>
     </div>
+    <footer className="text-center text-sm text-gray-500 py-6 border-t mt-10">
+  <a href="/about" className="hover:text-blue-600 transition">About</a>
+  <span className="mx-2">•</span>
+  <a href="/privacy" className="hover:text-blue-600 transition">Privacy Policy</a>
+</footer>
+
   );
 };
 
