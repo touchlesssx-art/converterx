@@ -34,13 +34,19 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
   }, [inputValue, fromUnit, toUnit, category]);
 
   // Handle input change
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    // Allow empty, numbers, and decimal point
-    if (value === '' || value === '-' || /^-?\d*\.?\d*$/.test(value)) {
-      setInputValue(value);
-    }
-  };
+const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  let value = e.target.value;
+
+  // Remove leading zeros unless it's a decimal like 0.5
+  if (value.startsWith('0') && value.length > 1 && !value.startsWith('0.')) {
+    value = value.replace(/^0+/, '');
+  }
+
+  // Allow empty, numbers, and decimal point
+  if (value === '' || value === '-' || /^-?\d*\.?\d*$/.test(value)) {
+    setInputValue(value);
+  }
+};
 
   // Animation state for arrow rotation
   const [isRotated, setIsRotated] = useState(false);
