@@ -85,17 +85,16 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
           From
         </label>
         <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
-          <input
-           <input
- type="number"
-  inputMode="decimal"
-  pattern="[0-9]*"
-  value={inputValue}
-  onChange={handleInputChange}
-  className="w-full sm:flex-1 px-3 sm:px-4 py-3 text-xl sm:text-2xl font-semibold text-gray-800 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
-  placeholder="Enter value"
-  autoFocus
-/>
+         <input
+            type="text"
+            inputMode="numeric"
+            pattern="[0-9]*"
+            value={inputValue}
+            onChange={handleInputChange}
+            className="w-full sm:flex-1 px-3 sm:px-4 py-3 text-xl sm:text-2xl font-semibold text-gray-800 bg-gray-50 border-2 border-gray-200 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all"
+            placeholder="Enter value"
+            autoFocus
+          />
           <select
             value={fromUnit}
             onChange={(e) => setFromUnit(e.target.value)}
