@@ -17,7 +17,7 @@ export default function ConverterCard({ category, onBack }: ConverterCardProps) 
   const unitKeys = Object.keys(categoryData.units);
   const [fromUnit, setFromUnit] = useState(unitKeys[0]);
   const [toUnit, setToUnit] = useState(unitKeys[1] || unitKeys[0]);
-  const [inputValue, setInputValue] = useState('1');
+  const [inputValue, setInputValue] = useState('0');
   const [result, setResult] = useState('0');
 
   // Perform conversion whenever input or units change
